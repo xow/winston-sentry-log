@@ -122,6 +122,9 @@ class Sentry extends TransportStream {
           err = info;
         } else {
           err = new Error(message);
+          if (info.stacktrace) {
+            err.stack = info.stacktrace;
+          }
           if (info.stack) {
             err.stack = info.stack;
           }
